@@ -28,6 +28,9 @@ See [`project structure`](#) below for details.
 - Sentiment trend over time
 - Risk-prone themes that correlate with escalations
 
+## Data Source
+Raw data from https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews?resource=download
+
 ## Project Structure
 nlp-customer-insights/
 │
