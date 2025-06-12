@@ -34,36 +34,36 @@ Raw data from https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews?reso
 ## Project Structure
 nlp-customer-insights/
 ├── data/
-│   ├── raw/                      # Unprocessed text files (e.g., tickets, reviews)
-│   ├── interim/                  # Cleaned/preprocessed data
-│   └── processed/                # Tokenized, vectorized, and final datasets
+│   ├── raw/     
+│   ├── interim/ 
+│   └── processed/
 │
 ├── src/
 │   ├── data/
-│   │   ├── load_data.py          # Load and sample text data
-│   │   └── clean_text.py         # Preprocessing: stopwords, stemming, etc.
+│   │   ├── load_data.py
+│   │   └── clean_text.py
 │   │
 │   ├── features/
-│   │   ├── vectorizer.py         # TF-IDF, word embeddings
-│   │   └── sentiment.py          # Rule-based or ML sentiment scoring
+│   │   ├── vectorizer.py
+│   │   └── sentiment.py
 │   │
 │   ├── models/
-│   │   ├── topic_model.py        # LDA, NMF models
-│   │   └── classifier.py         # Optional churn/risk prediction model
+│   │   ├── topic_model.py
+│   │   └── classifier.py
 │   │
 │   └── visualization/
-│       ├── plot_topics.py        # pyLDAvis, seaborn/t-SNE
-│       └── dashboard.py          # Streamlit or Plotly Dash UI
+│       ├── plot_topics.py
+│       └── dashboard.py
 │
 ├── outputs/
-│   ├── figures/                  # Visualizations
+│   ├── figures/
 │   └── reports/
-│       └── model_card.md         # MRM-style documentation (explainability, fairness)
+│       └── model_card.md
 │
 ├── app/
-│   └── main.py                   # Streamlit or FastAPI app for demo
+│   └── main.py
 │
-├── requirements.txt              # Dependencies
-├── README.md                     # Project overview
-└── setup.py                      # Optional for packaging as a module
+├── requirements.txt
+├── README.md
+└── setup.py
 
