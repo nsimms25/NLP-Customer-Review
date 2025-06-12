@@ -33,26 +33,26 @@ Raw data from https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews?reso
 
 ## Project Structure
 nlp-customer-insights/
-│
 ├── data/
 │   ├── raw/                      # Unprocessed text files (e.g., tickets, reviews)
 │   ├── interim/                  # Cleaned/preprocessed data
 │   └── processed/                # Tokenized, vectorized, and final datasets
+│
 ├── src/
 │   ├── data/
-│   │   └── load_data.py          # Load and sample text data
+│   │   ├── load_data.py          # Load and sample text data
 │   │   └── clean_text.py         # Preprocessing: stopwords, stemming, etc.
 │   │
 │   ├── features/
-│   │   └── vectorizer.py         # TF-IDF, word embeddings
+│   │   ├── vectorizer.py         # TF-IDF, word embeddings
 │   │   └── sentiment.py          # Rule-based or ML sentiment scoring
 │   │
 │   ├── models/
-│   │   └── topic_model.py        # LDA, NMF models
+│   │   ├── topic_model.py        # LDA, NMF models
 │   │   └── classifier.py         # Optional churn/risk prediction model
 │   │
 │   └── visualization/
-│       └── plot_topics.py        # pyLDAvis, seaborn/t-SNE
+│       ├── plot_topics.py        # pyLDAvis, seaborn/t-SNE
 │       └── dashboard.py          # Streamlit or Plotly Dash UI
 │
 ├── outputs/
@@ -63,6 +63,7 @@ nlp-customer-insights/
 ├── app/
 │   └── main.py                   # Streamlit or FastAPI app for demo
 │
-├── requirements.txt
-├── README.md
-└── setup.py                     # Optional for packaging
+├── requirements.txt              # Dependencies
+├── README.md                     # Project overview
+└── setup.py                      # Optional for packaging as a module
+
