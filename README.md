@@ -3,7 +3,6 @@
 This project uses natural language processing (NLP) to extract risk and experience signals from unstructured customer support data. It demonstrates end-to-end capabilities from data ingestion to model deployment and visualization.
 
 ## Features
-
 - Text cleaning and preprocessing pipeline
 - Sentiment analysis (rule-based and ML)
 - Topic modeling (LDA, NMF)
