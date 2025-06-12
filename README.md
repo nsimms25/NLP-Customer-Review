@@ -33,10 +33,9 @@ Raw data from https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews?reso
 ## Project Structure
 nlp-customer-insights/
 ├── data/
-│   ├── raw/     
-│   ├── interim/ 
-│   └── processed/
-│
+│  ├── raw/     
+│  ├── interim/ 
+│  └── processed/
 ├── src/
 │   ├── data/
 │   │   ├── load_data.py
