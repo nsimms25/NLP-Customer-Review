@@ -26,5 +26,17 @@ def plot_topic_distributions(doc_topics, save_path=None):
     else:
         plt.show()
 
-
-
+def generate_interactive_lda_vis(lda_model, dtm, vectorizer, output_html="lda_vis.html"):
+    """
+    Generates an interactive pyLDAvis HTML visualization.
+    
+    Parameters:
+        lda_model: Trained LDA model from scikit-learn
+        dtm: Document-term matrix (used during LDA training)
+        vectorizer: Fitted CountVectorizer or TfidfVectorizer
+        output_html (str): File path to save the HTML visualization
+    """
+    print("Generating interactive LDA visualization...")
+    vis_data = pyLDAvis.lda_model.prepare(lda_model, dtm, vectorizer)
+    pyLDAvis.save_html(vis_data, output_html)
+    print(f"Interactive LDA visualization saved to: {output_html}")
