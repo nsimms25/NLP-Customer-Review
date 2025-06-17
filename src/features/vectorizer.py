@@ -9,9 +9,9 @@ def vectorize_text(
     method: str = "tfidf",
     max_features: int = 5000,
     ngram_range: Tuple[int, int] = (1, 1),
-    min_df: int = 2,
-    max_df: float = 0.95
-) -> Tuple[pd.DataFrame, Union[CountVectorizer, TfidfVectorizer]]:
+    min_df: int = 1,
+    max_df: float = 1.00
+) -> Tuple[Union[spmatrix, np.ndarray], Union[CountVectorizer, TfidfVectorizer]]:
     """
     Vectorizes text data using TF-IDF or Bag-of-Words.
     Returns DataFrame and fitted vectorizer.
@@ -41,7 +41,7 @@ def vectorize_text(
     data: np.ndarray = matrix.toarray() if issparse(matrix) else np.asarray(matrix) # type: ignore
 
     features_df = pd.DataFrame(data, columns=feature_names)
-    return features_df, vectorizer
+    return matrix, vectorizer
 
 if __name__ == "__main__":
     sample_texts = pd.Series([
@@ -53,7 +53,7 @@ if __name__ == "__main__":
     ])
 
     # Run the vectorizer function
-    features_df, vectorizer = vectorize_text(
+    dtm, vectorizer = vectorize_text(
         texts=sample_texts.tolist(),
         method="tfidf",
         max_features=10,
@@ -62,10 +62,19 @@ if __name__ == "__main__":
         max_df=1.0
     )
 
+    feature_names = vectorizer.get_feature_names_out()
+
+    # Convert sparse matrix to dense NumPy array
+    dense_matrix = dtm.toarray() # type: ignore
+
+    # Create DataFrame to use head()
+    df = pd.DataFrame(dense_matrix, columns=feature_names)
+
     # Print results
     print("Vectorized Feature Names:")
     print(vectorizer.get_feature_names_out())
 
-    print("\nFeature DataFrame (shape = {}):".format(features_df.shape))
-    print(features_df.head())
+    print("\nFeature DataFrame (shape = {}):".format(df.shape))
+    
+    print(df.head())
 

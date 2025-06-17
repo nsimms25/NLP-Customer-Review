@@ -3,12 +3,13 @@ from sklearn.decomposition import LatentDirichletAllocation
 from sklearn.feature_extraction.text import CountVectorizer
 import joblib
 
-def fit_lda_model(docs, n_topics=5, max_iter=10, random_state=37):
+def fit_lda_model(doc_term_matrix, vectorizer, n_topics=5, max_iter=10, random_state=37):
     """
     Fit LDA topic model on a list of documents.
     
     Args:
         docs (list of str): List of cleaned documents (text).
+        vectorizer: Train Vectorizer
         n_topics (int): Number of topics to extract.
         max_iter (int): Number of iterations.
         random_state (int): Random seed.
@@ -18,10 +19,6 @@ def fit_lda_model(docs, n_topics=5, max_iter=10, random_state=37):
         vectorizer (CountVectorizer): Fitted CountVectorizer.
         topic_word_df (pd.DataFrame): Top words per topic.
     """
-    # Vectorize documents with CountVectorizer (bag-of-words)
-    vectorizer = CountVectorizer(max_df=0.95, min_df=2, stop_words='english')
-    doc_term_matrix = vectorizer.fit_transform(docs)
-
     # Fit LDA model
     lda = LatentDirichletAllocation(n_components=n_topics, max_iter=max_iter,
                                     random_state=random_state)
@@ -57,6 +54,7 @@ def assign_topics(lda, vectorizer, docs):
     return dominant_topics.tolist()
 
 if __name__ == "__main__":
+    from src.features.vectorizer import vectorize_text
     sample_docs = [
     "The product quality is excellent and delivery was fast.",
     "Customer service was rude and unhelpful.",
@@ -85,8 +83,10 @@ if __name__ == "__main__":
     "The product packaging was eco-friendly and neat."
     ]
 
+    dtm, vectorizer = vectorize_text(sample_docs)
+
     print("Fitting LDA model documents")
-    lda_model, vectorizer, topics_df = fit_lda_model(sample_docs, n_topics=3)
+    lda_model, vectorizer, topics_df = fit_lda_model(dtm, vectorizer, n_topics=3)
 
     print("Top words per topic:")
     print(topics_df)

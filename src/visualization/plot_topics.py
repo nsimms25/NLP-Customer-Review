@@ -50,13 +50,17 @@ if __name__ == "__main__":
     from src.models.topic_model import fit_lda_model, assign_topics
 
     # Load and preprocess
-    df = load_reviews("data/raw/sub_sample_100k.csv")
+    df = load_reviews("data/raw/sub_sample_50k.csv")
     texts = clean_texts(df["Summary"].tolist())
+    print(texts[:10])  # First 10 cleaned texts
     dtm, vectorizer = vectorize_text(texts)
-    lda_model = fit_lda_model(dtm, n_topics=3)
+    feature_names = vectorizer.get_feature_names_out()
+    features_df = pd.DataFrame(dtm.toarray(), columns=feature_names) # type: ignore
+
+    lda_model, vectorizer, topic_word_df = fit_lda_model(dtm, vectorizer, n_topics=3)
 
     # Get dominant topics
-    doc_topics = assign_topics(lda_model, dtm, docs=texts)
+    doc_topics = assign_topics(lda_model, vectorizer, docs=texts)
     plot_topic_distributions(doc_topics, save_path="outputs/figures/topic_distribution.png")
 
     # Generate interactive visualization
