@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pyLDAvis
-import pyLDAvis.sklearn
+import pyLDAvis.lda_model
 
 def plot_topic_distributions(doc_topics, save_path=None):
     """
@@ -19,3 +19,6 @@ def plot_topic_distributions(doc_topics, save_path=None):
     plt.xlabel("Topic")
     plt.ylabel("Number of Documents")
     plt.tight_layout()
+
+
+
