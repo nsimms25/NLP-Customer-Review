@@ -3,7 +3,7 @@ from sklearn.decomposition import LatentDirichletAllocation
 from sklearn.feature_extraction.text import CountVectorizer
 import joblib
 
-def fit_lda_model(docs, n_topics=5, max_iter=10, random_state=42):
+def fit_lda_model(docs, n_topics=5, max_iter=10, random_state=37):
     """
     Fit LDA topic model on a list of documents.
     
