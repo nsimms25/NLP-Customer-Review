@@ -26,7 +26,7 @@ def plot_topic_distributions(doc_topics, save_path=None):
     else:
         plt.show()
 
-def generate_interactive_lda_vis(lda_model, dtm, vectorizer, output_html="lda_vis.html"):
+def generate_interactive_lda_plot(lda_model, dtm, vectorizer, output_html="lda_vis.html"):
     """
     Generates an interactive pyLDAvis HTML visualization.
     
@@ -40,3 +40,24 @@ def generate_interactive_lda_vis(lda_model, dtm, vectorizer, output_html="lda_vi
     vis_data = pyLDAvis.lda_model.prepare(lda_model, dtm, vectorizer)
     pyLDAvis.save_html(vis_data, output_html)
     print(f"Interactive LDA visualization saved to: {output_html}")
+
+if __name__ == "__main__":
+    import pickle
+    from sklearn.decomposition import LatentDirichletAllocation
+    from src.data.load_data import load_reviews
+    from src.data.clean_text import clean_texts
+    from src.features.vectorizer import vectorize_text
+    from src.models.topic_model import fit_lda_model, assign_topics
+
+    # Load and preprocess
+    df = load_reviews("data/raw/sub_sample_100k.csv")
+    texts = clean_texts(df["Summary"].tolist())
+    dtm, vectorizer = vectorize_text(texts)
+    lda_model = fit_lda_model(dtm, n_topics=3)
+
+    # Get dominant topics
+    doc_topics = assign_topics(lda_model, dtm, docs=texts)
+    plot_topic_distributions(doc_topics, save_path="outputs/figures/topic_distribution.png")
+
+    # Generate interactive visualization
+    generate_interactive_lda_plot(lda_model, dtm, vectorizer, output_html="outputs/figures/lda_vis.html")

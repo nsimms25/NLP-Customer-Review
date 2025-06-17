@@ -1,11 +1,11 @@
 import pandas as pd
 import numpy as np
-from typing import Tuple, Union
+from typing import Tuple, Union, List
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from scipy.sparse import issparse, spmatrix
 
 def vectorize_text(
-    texts: pd.Series,
+    texts: List[str],
     method: str = "tfidf",
     max_features: int = 5000,
     ngram_range: Tuple[int, int] = (1, 1),
@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
     # Run the vectorizer function
     features_df, vectorizer = vectorize_text(
-        texts=sample_texts,
+        texts=sample_texts.tolist(),
         method="tfidf",
         max_features=10,
         ngram_range=(1, 2),  # Unigrams and bigrams
