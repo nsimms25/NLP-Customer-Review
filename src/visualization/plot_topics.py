@@ -20,5 +20,11 @@ def plot_topic_distributions(doc_topics, save_path=None):
     plt.ylabel("Number of Documents")
     plt.tight_layout()
 
+    if save_path:
+        plt.savefig(save_path)
+        print(f"Bar chart saved to {save_path}")
+    else:
+        plt.show()
+
 
 
