@@ -35,8 +35,6 @@ Raw data from https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews?reso
 nlp-customer-insights/
 ├── data/
 │   ├── raw/                     # Raw text(reviews)
-│   ├── interim/                 # Cleaned/preprocessed data
-│   └── processed/               # Tokenized, vectorized, and final datasets
 │
 ├── src/
 │   ├── data/
