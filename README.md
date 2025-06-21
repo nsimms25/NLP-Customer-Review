@@ -57,6 +57,7 @@ nlp-customer-insights/
 │
 ├── outputs/
 │   ├── figures/                 # Visualizations
+|   ├── models/                  # Models saved
 │   └── reports/
 │       └── model_card.md        # MRM-style documentation (explainability, fairness)
 │

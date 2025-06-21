@@ -1,6 +1,7 @@
 import re
 import string
 import spacy
+import pandas as pd
 from typing import List, Optional
 from nltk.corpus import stopwords
 
@@ -49,7 +50,13 @@ def clean_texts(texts: List[str], **kwargs) -> List[str]:
     Returns:
         List[str]: List of cleaned texts.
     """
-    return [clean_text(text, **kwargs) for text in texts]
+    cleaned = []
+    for text in texts:
+        if pd.isna(text) or not isinstance(text, str):
+            cleaned.append("")
+        else:
+            cleaned.append(clean_text(text, **kwargs))
+    return cleaned
 
 if __name__ == "__main__":
     example = "This is an example of what a sentence would look like!!"
