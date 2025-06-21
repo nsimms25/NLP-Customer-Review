@@ -61,10 +61,5 @@ nlp-customer-insights/
 │   └── reports/
 │       └── model_card.md        # MRM-style documentation (explainability, fairness)
 │
-├── app/
-│   └── main.py                  # FastAPI app
-│
-├── requirements.txt             # Dependencies
 ├── README.md                    # Project overview
-└── setup.py                     # Optional Python packaging script
 </pre>
